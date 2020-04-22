@@ -26,7 +26,7 @@
 ### 安装系统依赖
 
 ```bash
-$ git clone -b offline https://github.com/zilliztech/arctern-resources.git
+$ git clone -b offline https://github.com/zilliztech/arctern-resources.git    # 有网环境中下载
 $ cd arctern-resources/arctern_dependcies/ubuntu_dependcies
 $ ./install_packages.sh gl      # 安装gl-mesa库
 $ ./install_packages.sh jdk     # 安装java8
@@ -38,7 +38,7 @@ $ ./install_packages.sh jdk     # 安装java8
 
 
 ```bash
-$ wget "http://mirror.bit.edu.cn/apache/spark/spark-3.0.0-preview2/spark-3.0.0-preview2-bin-hadoop2.7.tgz"
+$ wget "http://mirror.bit.edu.cn/apache/spark/spark-3.0.0-preview2/spark-3.0.0-preview2-bin-hadoop2.7.tgz"       # 有网环境中下载
 $ mkdir -p $SPARK_HOME && tar zxvf spark-3.0.0-preview2-bin-hadoop2.7.tgz -C $SPARK_HOME       # SPARK_HOME 为spark的安装目录
 ```
 
@@ -47,7 +47,7 @@ $ mkdir -p $SPARK_HOME && tar zxvf spark-3.0.0-preview2-bin-hadoop2.7.tgz -C $SP
 下载 [Miniconda3](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh)，并执行以下命令
 
 ```bash
-$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh         # 有网环境中下载
 $ /bin/bash ~/miniconda.sh -b -p $CONDA_HOME      # CONDA_HOME 为Conda的安装目录
 ```
 
@@ -158,23 +158,19 @@ export PYSPARK_PYTHON=[path/to/your/conda]/envs/arctern/bin/python
 
 ## 测试样例
 
-下载测试文件
+使用测试文件检验Arctern是否安装成功,通过以下命令提交 Spark 任务。
 
 ```bash
-wget https://raw.githubusercontent.com/zilliztech/arctern/master/spark/pyspark/examples/gis/spark_udf_ex.py
-```
+$ cd arctern-resources/arctern_dependencies/example
 
-通过以下命令提交 Spark 任务，其中 `[path/to/]spark_udf_ex.py` 为测试文件所在的路径。
-
-```bash
 # local mode
-[path/to/your/spark]/bin/spark-submit [path/to/]spark_udf_ex.py
+[path/to/your/spark]/bin/spark-submit spark_udf_ex.py
 
 # standalone mode
-[path/to/your/spark]/bin/spark-submit --master [spark service address] [path/to/]spark_udf_ex.py
+[path/to/your/spark]/bin/spark-submit --master [spark service address] spark_udf_ex.py
 
 # hadoop/yarn mode
-[path/to/your/spark]/bin/spark-submit --master yarn [path/to/]spark_udf_ex.py
+[path/to/your/spark]/bin/spark-submit --master yarn spark_udf_ex.py
 ```
 
 ## 卸载
