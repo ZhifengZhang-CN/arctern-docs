@@ -26,10 +26,10 @@
 ### 安装系统依赖
 
 ```bash
-$ cd arctern_dependcies/ubuntu_dependcies/gl-mesa
-$ dpkg -i ./*.deb
-$ cd arctern_dependcies/ubuntu_dependcies/openjdk-8-jdk
-$ dpkg -i ./*.deb
+$ git clone -b offline https://github.com/zilliztech/arctern-resources.git
+$ cd arctern-resources/arctern_dependcies/ubuntu_dependcies
+$ ./install_packages.sh gl      # 安装gl-mesa库
+$ ./install_packages.sh jdk     # 安装java8
 ```
 
 ### 安装Spark
@@ -38,7 +38,8 @@ $ dpkg -i ./*.deb
 
 
 ```bash
-$ wget -qO- "http://mirror.bit.edu.cn/apache/spark/spark-3.0.0-preview2/spark-3.0.0-preview2-bin-hadoop2.7.tgz" | tar --strip-components=1 -xz -C $SPARK_HOME       # SPARK_HOME 为spark的安装目录
+$ wget "http://mirror.bit.edu.cn/apache/spark/spark-3.0.0-preview2/spark-3.0.0-preview2-bin-hadoop2.7.tgz"
+$ mkdir -p $SPARK_HOME && tar zxvf spark-3.0.0-preview2-bin-hadoop2.7.tgz -C $SPARK_HOME       # SPARK_HOME 为spark的安装目录
 ```
 
 ### 安装Miniconda
@@ -46,8 +47,8 @@ $ wget -qO- "http://mirror.bit.edu.cn/apache/spark/spark-3.0.0-preview2/spark-3.
 下载 [Miniconda3](https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh)，并执行以下命令
 
 ```bash
-$ wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-  /bin/bash ~/miniconda.sh -b -p $CONDA_HOME      # CONDA_HOME 为Conda的安装目录
+$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+$ /bin/bash ~/miniconda.sh -b -p $CONDA_HOME      # CONDA_HOME 为Conda的安装目录
 ```
 
 ### CUDA 环境安装（可选）
@@ -97,7 +98,7 @@ $ conda create -n arctern
   例如:
 
   ```bash
-  $ conda install -n arctern -c file:///tmp/arctern-dependencies/channel arctern-spark   --offline --override-channels
+  $ conda install -n arctern -c file:///tmp/arctern-resources/arctern_dependencies/conda_dependencies/channel arctern-spark   --offline --override-channels
   ```
 
 
@@ -113,8 +114,8 @@ $ conda create -n arctern
   例如:
 
   ```bash
-      conda install -n arctern -c file:///tmp/arctern-dependencies/channel/label/cuda10.0 libarctern --offline --override-channels
-      conda install -n arctern -c file:///tmp/arctern-dependencies/channel arctern   arctern-spark --offline --override-channels
+      conda install -n arctern -c file:///tmp/arctern-resources/arctern_dependencies/conda_dependencies/channel/label/cuda10.0 libarctern --offline --override-channels
+      conda install -n arctern -c file:///tmp/arctern-resources/arctern_dependencies/conda_dependencies/channel arctern   arctern-spark --offline --override-channels
   ```
 
 
